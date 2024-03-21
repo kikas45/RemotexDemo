@@ -11,7 +11,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "sync2app.com.syncapplive"
+        applicationId "zidsworld.com.remotewebview"
         minSdk 24
         targetSdk 33
         versionCode 1

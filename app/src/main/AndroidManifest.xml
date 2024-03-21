@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="sync2app.com.syncapplive">
+    package="remotex.com.remotewebview">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -50,6 +50,12 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute">
         <activity
+            android:name=".additionalSettings.ExampleDownloadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".additionalSettings.DonwloadPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".additionalSettings.MyTestDownloadAPI"
             android:exported="false" />
         <activity
@@ -85,11 +91,6 @@
             android:exported="false" />
         <activity
             android:name=".additionalSettings.RequiredBioActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:exported="false" />
-
-        <activity
-            android:name=".additionalSettings.SystemInfoActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:exported="false" />
         <activity
@@ -219,16 +220,6 @@
             android:name=".additionalSettings.myService.OnChnageService"
             android:directBootAware="true"
             android:exported="false" />
-
-        <receiver
-            android:name=".additionalSettings.myService.RestarterBootReceiver"
-            android:directBootAware="true"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="RestarterBootReceiver" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

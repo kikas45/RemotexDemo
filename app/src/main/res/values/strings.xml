@@ -1,13 +1,7 @@
 <resources>
-    <string name="app_name">
-        <!--   <font fgcolor='#808080'>Remote</font><font fgcolor='#40E0D0'><b>X</b></font><font fgcolor='#808080'> WebView</font>
-    -->
-        Sync2app
-
-    </string>
+    <string name="app_name"><font fgcolor='#808080'>Remote</font><font fgcolor='#40E0D0'><b>X</b></font><font fgcolor='#808080'> WebView</font></string>
     <string name="todo">todo</string>
-    <!-- <string name="deeplink_url">zidsworld.com</string>-->
-    <string name="deeplink_url">Sync2app.MoreAdvice</string>
+    <string name="deeplink_url">zidsworld.com</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
 
     <string name="admobid">ca-app-pub-3940256099942544/6300978111</string>
@@ -15,7 +9,7 @@
     <string name="appid">ca-app-pub-3940256099942544~3347511713</string>
     // app id
     <string name="interstitialadid">ca-app-pub-3940256099942544/1033173712</string>
-    // interstitial ad unit id
+    // interstitial
 
     <string name="internet_error">Something went wrong way</string>
     <string name="navigation_drawer_open">open drawer</string>

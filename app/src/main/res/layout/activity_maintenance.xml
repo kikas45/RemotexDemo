@@ -78,79 +78,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textHardwarePage"
-                style="@style/textColorStyle"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                android:elegantTextHeight="true"
-                android:focusable="true"
-                android:foreground="?selectableItemBackground"
-                android:gravity="start|center"
-                android:maxLines="1"
-                android:paddingStart="65dp"
-                android:paddingLeft="24dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="Hardware Information"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="HardcodedText,RtlSymmetry" />
-
-
-            <TextView
-                android:id="@+id/textCrashPage"
-                style="@style/textColorStyle"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:clickable="true"
-                android:elegantTextHeight="true"
-                android:focusable="true"
-                android:foreground="?selectableItemBackground"
-                android:gravity="start|center"
-                android:maxLines="1"
-                android:paddingStart="65dp"
-                android:paddingLeft="24dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="Crash History"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider32"
-                tools:ignore="HardcodedText,RtlSymmetry" />
-
-
-            <TextView
-                android:id="@+id/textFileManger"
-                style="@style/textColorStyle"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:clickable="true"
-                android:elegantTextHeight="true"
-                android:focusable="true"
-                android:foreground="?selectableItemBackground"
-                android:gravity="start|center"
-                android:maxLines="1"
-                android:paddingStart="65dp"
-                android:paddingLeft="24dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="File Manager"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider34"
-                tools:ignore="HardcodedText,RtlSymmetry" />
-
-
 
             <TextView
                 android:id="@+id/textCheckDownloadStatus2"
@@ -173,7 +100,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/imagEnableDownloadStatus"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider39"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
 
@@ -185,36 +112,10 @@
                 android:alpha="1"
                 app:layout_constraintBottom_toBottomOf="@+id/textCheckDownloadStatus2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider39" />
+                app:layout_constraintTop_toTopOf="@+id/textCheckDownloadStatus2" />
 
 
-
-
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_arrow_move_front"
-                app:layout_constraintBottom_toBottomOf="@+id/textHardwarePage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textHardwarePage"
-                app:tint="#494646" />
-
-
-            <ImageView
-                android:id="@+id/imageView22"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_arrow_move_front"
-                app:layout_constraintBottom_toBottomOf="@+id/textCrashPage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider32"
-                app:tint="#494646" />
-
-   <!--         <ImageView
+            <!--         <ImageView
                 android:id="@+id/imageView23"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
@@ -227,41 +128,8 @@
 
             -->
 
-            <ImageView
-                android:id="@+id/imageView36"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_arrow_move_front"
-                app:layout_constraintBottom_toBottomOf="@+id/textFileManger"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider33"
-                app:tint="#494646" />
 
-
-            <ImageView
-                android:id="@+id/imageView9"
-                style="@style/imageStyleColorTint"
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/divider32"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textHardwarePage"
-                app:srcCompat="@drawable/ic_system_memory_24" />
-
-            <ImageView
-                android:id="@+id/imageView21"
-                style="@style/imageStyleColorTint"
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/divider33"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textCrashPage"
-                app:srcCompat="@drawable/ic_crash_report" />
-
-     <!--       <ImageView
+            <!--       <ImageView
                 android:id="@+id/imageView20"
                 style="@style/imageStyleColorTint"
                 android:layout_width="27dp"
@@ -274,18 +142,6 @@
 
             -->
 
-            <ImageView
-                android:id="@+id/imageView33"
-                style="@style/imageStyleColorTint"
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/divider38"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider33"
-                app:srcCompat="@drawable/ic_folder_icon" />
-
-
 
             <ImageView
                 android:id="@+id/imageView39"
@@ -295,28 +151,8 @@
                 android:layout_marginStart="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textCheckDownloadStatus2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider39"
+                app:layout_constraintTop_toTopOf="@+id/textCheckDownloadStatus2"
                 app:srcCompat="@drawable/ic_download_24" />
-
-            <View
-                android:id="@+id/divider32"
-                style="@style/dividerBackColor"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textHardwarePage" />
-
-            <View
-                android:id="@+id/divider33"
-                style="@style/dividerBackColor"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textCrashPage" />
 
             <View
                 android:id="@+id/divider38"
@@ -326,7 +162,7 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textFileManger" />
+                tools:layout_editor_absoluteY="200dp" />
 
             <View
                 android:id="@+id/divider39"
@@ -336,7 +172,7 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textFileManger" />
+                tools:layout_editor_absoluteY="200dp" />
 
             <View
                 android:id="@+id/divider40"
@@ -347,16 +183,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textCheckDownloadStatus2" />
-
-            <View
-                android:id="@+id/divider34"
-                style="@style/dividerBackColor"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider33" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
