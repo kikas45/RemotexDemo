@@ -85,6 +85,13 @@ class MyTestDownloadAPI : AppCompatActivity() {
 
         binding.textDisplayText.setOnClickListener {
 
+            excuteMyDownload()
+
+        }
+    }
+
+    private fun excuteMyDownload() {
+        binding.apply {
             val getvalues = myDownloadClass.getString("url1", "").toString()
             val getvalues22 = myDownloadClass.getString("url2", "").toString()
             val getvalues33 = myDownloadClass.getString("url3", "").toString()
@@ -93,11 +100,11 @@ class MyTestDownloadAPI : AppCompatActivity() {
             val (url2, fileName2) = extractUrlAndFileName(getvalues22)
             val (url3, fileName3) = extractUrlAndFileName(getvalues33)
 
-          //  download(url1, fileName1)
-          //  download(url2, fileName2)
-          //  download(url3, fileName3)
+            //  download(url1, fileName1)
+            //  download(url2, fileName2)
+            //  download(url3, fileName3)
 
-         //   myTextView.setText("$url1 \n$fileName1")
+            //   myTextView.setText("$url1 \n$fileName1")
 
 
             val urlsAndFileNames = listOf(
@@ -109,8 +116,6 @@ class MyTestDownloadAPI : AppCompatActivity() {
             downloadSequentially(urlsAndFileNames)
 
             myTextView.setText(urlsAndFileNames.toString())
-
-
 
         }
     }
@@ -172,7 +177,11 @@ class MyTestDownloadAPI : AppCompatActivity() {
             editor.putString("url${index + 1}", pair)
         }
         editor.apply()
-        showToastMessage("URL pairs saved successfully")
+
+        runOnUiThread {
+            showToastMessage("URL pairs saved successfully")
+            excuteMyDownload()
+        }
     }
 
 
@@ -206,6 +215,7 @@ class MyTestDownloadAPI : AppCompatActivity() {
                 var line: String?
                 while (reader.readLine().also { line = it } != null) {
                     stringBuilder.append(line).append("\n")
+
                 }
             } else {
                 Log.e("CSVReadError", "Response code: $code")

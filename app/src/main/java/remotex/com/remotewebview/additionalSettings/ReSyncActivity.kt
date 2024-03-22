@@ -66,7 +66,6 @@ import remotex.com.remotewebview.databinding.CustomContinueDownloadLayoutBinding
 import remotex.com.remotewebview.databinding.CustomDefinedTimeIntervalsBinding
 import remotex.com.remotewebview.databinding.CustomSavedHistoryLayoutBinding
 import remotex.com.remotewebview.databinding.CustomSelectLauncOrOfflinePopLayoutBinding
-import remotex.com.remotewebview.databinding.CustomSetUpTimerOptionLayoutBinding
 import remotex.com.remotewebview.databinding.FinishWithConfigDownloadBinding
 import remotex.com.remotewebview.databinding.ProgressDialogLayoutBinding
 import remotex.com.remotewebview.databinding.SampleProgressConfigLayoutBinding
@@ -210,6 +209,10 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
 
 
 
+            textViewUIForApi.setOnClickListener {
+                startActivity(Intent(applicationContext, DonwloadPageActivity::class.java))
+            }
+
             textTestConnectionAPPer.setOnClickListener {
                 hideKeyBoard(binding.editTextInputSynUrlZip)
                 try {
@@ -221,6 +224,8 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
 
 
             }
+
+
             textExampleDownload.setOnClickListener {
                 startActivity(Intent(applicationContext, ExampleDownloadActivity::class.java))
 
@@ -306,17 +311,11 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
 
       //  showCustomProgressDialog("Testing connection")
 
-      //  val ServerUrl = myDownloadClass.getString(Constants.get_masterDomain, "").toString()
-      //  var ServerUrl = "https://cloudappserver.co.uk/cp/app_base/public/CLO/DE_MO_2021000/App/Config/app_logo.png"
-     //   val ServerUrl = "https://cloudappserver.co.uk/cp/app_base/public/CLO/HQ/Zip/App.zip"
-        val ServerUrl = "https://firebasestorage.googleapis.com/v0/b/syn2appkiller.appspot.com/o/myApp.zip?alt=media&token=8b303be6-4490-4fe0-ae6f-47a1b5278926"
+      //  val ServerUrl = "https://firebasestorage.googleapis.com/v0/b/syn2appkiller.appspot.com/o/myApp.zip?alt=media&token=8b303be6-4490-4fe0-ae6f-47a1b5278926"
+        val ServerUrl = "https://cloudappserver.co.uk/cp/app_base/public/CLO/DE_MO_2021001/Zip/Config.zip"
 
 
-      //  var ServerUrl =  "https://cp.cloudappserver.co.uk/app_base/public/CLO/HQ/Zip/App.zip"
-      //  var ServerUrl = "https://cloudappserver.co.uk/cp/app_base/public/CLO/DE_MO_2021000/App/Config/app_logo.png"
-     //  var ServerUrl = "https://cloudappserver.co.uk/cp/app_base/public/BV/141629/App/Config/Splash.mp4"
 
-        //    ServerUrl =   "https://sync2app.com/abc/123/admin_config/appConfig.json";
         val sharedLicenseKeys = getSharedPreferences(Constants.SIMPLE_SAVED_PASSWORD, MODE_PRIVATE)
 
        val  get_UserID = sharedLicenseKeys.getString(Constants.get_UserID, "")!!
@@ -466,7 +465,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
         }
 
 
-        downloadConfiGFile(get_UserID, get_LicenseKey, ServerUrl, Constants.AppConfig)
+        downloadConfiGFile(get_UserID, get_LicenseKey, ServerUrl, Constants.Config)
         alertDialog.show()
 
         isDownloadComplete = false // Flag to track download completion
@@ -477,7 +476,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                 while (!isDownloadComplete) {
 
                    runOnUiThread {
-                       getDownloadStatus(bindingCM.progressBarPref, bindingCM.teextDisplaydownload, get_UserID, get_LicenseKey, ServerUrl, Constants.AppConfig )
+                       getDownloadStatus(bindingCM.progressBarPref, bindingCM.teextDisplaydownload, get_UserID, get_LicenseKey, ServerUrl, Constants.Config )
                    }
 
 
@@ -503,7 +502,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
 
             val download_ref: Long = myDownloadClass.getLong(Constants.downloadKey, -15)
 
-            val folderName = "AppConfig"
+            val folderName = Constants.Config
             val Syn2AppLive = "Syn2AppLive"
 
             val DeleteFolderPath = "/$Syn2AppLive/$get_UserID/$get_LicenseKey/$folderName/$fileName"
@@ -628,8 +627,13 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                 val finalFolderPath = "/$get_UserID/$get_LicenseKey"
                 val finalFolderPathDesired = "/$get_UserID/$get_LicenseKey/$folderName"
 
+                val get_Clo = myDownloadClass.getString(Constants.getFolderClo, "")
+                val get_DEmo = myDownloadClass.getString(Constants.getFolderSubpath, "")
+
+                val newConfigFolder  = "/$get_Clo/$get_DEmo/App/"
+
                 val directoryPathString = Environment.getExternalStorageDirectory().absolutePath + "/Download/$Syn2AppLive" + finalFolderPath
-                val destinationFolder = File(Environment.getExternalStorageDirectory().absolutePath + "/Download/$Syn2AppLive/" + finalFolderPathDesired)
+                val destinationFolder = File(Environment.getExternalStorageDirectory().absolutePath + "/Download/$Syn2AppLive/" + newConfigFolder)
 
                 if (!destinationFolder.exists()) {
                     destinationFolder.mkdirs()
@@ -2661,7 +2665,8 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                 customProgressDialog.dismiss()
                 if (!binding.imagSwtichEnableSyncFromAPI.isChecked) {
 
-                    startActivity(Intent(applicationContext, DonwloadPageActivity::class.java))
+                   // startActivity(Intent(applicationContext, DonwloadPageActivity::class.java))
+                    startActivity(Intent(applicationContext, DisplayCSvFiles::class.java))
 
                 }else{
 
@@ -2716,7 +2721,8 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                 customProgressDialog.dismiss()
                 if (!binding.imagSwtichEnableSyncFromAPI.isChecked) {
 
-                    startActivity(Intent(applicationContext, DonwloadPageActivity::class.java))
+                  //  startActivity(Intent(applicationContext, DonwloadPageActivity::class.java))
+                    startActivity(Intent(applicationContext, DisplayCSvFiles::class.java))
 
                 } else {
 

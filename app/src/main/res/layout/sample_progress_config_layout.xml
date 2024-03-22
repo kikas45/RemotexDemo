@@ -71,7 +71,7 @@
             android:focusable="true"
             android:fontFamily="sans-serif-medium"
             android:foreground="?selectableItemBackground"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:paddingLeft="14dp"
             android:paddingTop="8dp"
             android:paddingRight="18dp"

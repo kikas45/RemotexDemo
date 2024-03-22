@@ -112,17 +112,6 @@ public class WelcomeSlider extends AppCompatActivity {
 
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View yourView = inflater.inflate(R.layout.slider_layout_1, , false);
-//        screen1bg = yourView.findViewById(R.id.slider1layout);
-
-
-//        screen1bg = ((findViewById(R.id.slider1layout)));
-//
-//        if (!(screen1BgColor == null)) {
-//            screen1bg.setBackgroundColor(Color.parseColor(screen1BgColor));
-//        }
-        // layouts of all welcome sliders
-        // add few more layouts if you want
         layouts = new int[]{
                 R.layout.slider_layout_1,
                 R.layout.slider_layout_2,
@@ -238,25 +227,6 @@ public class WelcomeSlider extends AppCompatActivity {
 
 
 
-
-
-//        SharedPreferences sharedBiometric = getSharedPreferences(Constants.SHARED_BIOMETRIC, Context.MODE_PRIVATE);
-//
-//        String get_AppMode = sharedBiometric.getString(Constants.MY_TV_OR_APP_MODE, "");
-//
-//        if (get_AppMode.equals(Constants.TV_Mode)) {
-//            Intent myactivity = new Intent(WelcomeSlider.this, WebActivity2222.class);
-//            myactivity.putExtra("url", jsonUrl);
-//            startActivity(myactivity);
-//            finish();
-//
-//        } else {
-//            Intent myactivity = new Intent(WelcomeSlider.this, WebActivity.class);
-//            myactivity.putExtra("url", jsonUrl);
-//            startActivity(myactivity);
-//            finish();
-//        }
-
     }
 
     /**
@@ -268,9 +238,7 @@ public class WelcomeSlider extends AppCompatActivity {
         window.setStatusBarColor(Color.TRANSPARENT);
     }
 
-    /**
-     * View pager adapter
-     */
+
 
     public class MyViewPagerAdapter extends PagerAdapter {
         private LayoutInflater layoutInflater;
@@ -350,44 +318,7 @@ public class WelcomeSlider extends AppCompatActivity {
             container.addView(view);
 
 
-//            if (!(screen1BgColor == null)) {
-//                screen1bg.setBackgroundColor(Color.parseColor(screen1BgColor));
-//            }
-//            int currpos = getItemPosition(0);
             int currpos = getItemPosition(position);
-//            try {
-//
-//
-//            if ( position==1 | position==0) {
-////                screen1bg = findViewById(R.id.slider1layout);
-//                if (!(screen1BgColor == null)) {
-//                    view.setBackgroundColor(Color.parseColor(screen1BgColor));
-//                }
-//            }
-//                else if (position == 2) {
-////                screen2bg = findViewById(R.id.slider2layout);
-//                if (!(screen2BgColor == null)) {
-//                    view.setBackgroundColor(Color.parseColor(screen2BgColor));
-//                }
-//            }
-//            } else if (position == 3){
-//                screen3bg = layoutInflater.
-//                if (!(screen3BgColor == null)) {
-//                    screen1bg.setBackgroundColor(Color.parseColor(screen3BgColor));
-//                }
-//                } else if (position == 4) {
-//                screen4bg = findViewById(R.id.slider4layout);
-//                if (!(screen4BgColor == null)) {
-//                    screen1bg.setBackgroundColor(Color.parseColor(screen4BgColor));
-//                }
-//            }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-
-//            screen2bg = findViewById(R.id.slider1layout);
-//            screen3bg = findViewById(R.id.slider1layout);
-//            screen3bg = findViewById(R.id.slider1layout);
 
 
             return view;

@@ -50,12 +50,19 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute">
         <activity
+            android:name=".additionalSettings.DisplayCSvFiles"
+            android:exported="false" />
+        <activity
+            android:name=".additionalSettings.MyWelcomeSlider"
+            android:exported="false" />
+        <activity
             android:name=".additionalSettings.ExampleDownloadActivity"
             android:exported="false" />
         <activity
             android:name=".additionalSettings.DonwloadPageActivity"
             android:exported="false" />
         <activity
+
             android:name=".additionalSettings.MyTestDownloadAPI"
             android:exported="false" />
         <activity

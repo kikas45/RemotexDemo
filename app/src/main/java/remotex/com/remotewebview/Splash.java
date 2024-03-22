@@ -143,7 +143,8 @@ public class Splash extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ServerUrl = "https://cloudappserver.co.uk/cp/app_base/public/CLO/DE_MO_2021000/AppConfig/appConfig.json";
+       /// ServerUrl = "https://cloudappserver.co.uk/cp/app_base/public/CLO/DE_MO_2021000/AppConfig/appConfig.json";
+        ServerUrl = "https://cloudappserver.co.uk/cp/app_base/public/CLO/DE_MO_2021001/App/Config/appConfig.json";
 
         try {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
