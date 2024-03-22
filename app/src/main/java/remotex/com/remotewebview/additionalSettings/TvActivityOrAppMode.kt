@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import remotex.com.remotewebview.WebActivity
 import remotex.com.remotewebview.additionalSettings.urlchecks.checkStoragePermission
 import remotex.com.remotewebview.additionalSettings.urlchecks.getPermissionStatus
 import remotex.com.remotewebview.additionalSettings.urlchecks.requestStoragePermission
@@ -31,7 +32,6 @@ class TvActivityOrAppMode : AppCompatActivity() {
     private lateinit var binding: ActivityTvOrAppModeBinding
     private var hasPermission = false
     private var isReady = false
-
 
     private val multiplePermissionId = 14
     private val multiplePermissionNameList = if (Build.VERSION.SDK_INT >= 33) {
@@ -60,20 +60,58 @@ class TvActivityOrAppMode : AppCompatActivity() {
     }
 
 
-
+    private var navigateTVMode = false;
     private var navigateAppMolde = false;
 
 
-
-
-    @SuppressLint("CommitPrefEdits", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTvOrAppModeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // SIMPLE PASSWORD
+
+
+
+        @SuppressLint("CommitPrefEdits") val simpleSavedPassword =
+            getSharedPreferences(Constants.SIMPLE_SAVED_PASSWORD, MODE_PRIVATE)
+
+        val CheckForPassword = simpleSavedPassword.getString(Constants.onCreatePasswordSaved, "")
+
+        if (CheckForPassword!!.isEmpty()) {
+            val editor = simpleSavedPassword.edit()
+            editor.putString(Constants.onCreatePasswordSaved, "onCreatePasswordSaved")
+            editor.putString(Constants.simpleSavedPassword, "1234")
+            editor.apply()
+        }
+
+        // SIMPLE PASSWORD
+
+
+        val sharedBiometric: SharedPreferences =
+            applicationContext.getSharedPreferences(Constants.SHARED_BIOMETRIC, MODE_PRIVATE)
+
+        val get_useOfflineOrOnline =
+            sharedBiometric.getString(Constants.imgAllowLunchFromOnline, "")
+        val get_TV_or_App_Mode = sharedBiometric.getString(Constants.MY_TV_OR_APP_MODE, "")
+
+
+        val editor = sharedBiometric.edit()
+        if (get_useOfflineOrOnline.equals(Constants.imgAllowLunchFromOnline) || get_TV_or_App_Mode.equals(
+                Constants.TV_Mode
+            )
+        ) {
+            startActivity(Intent(applicationContext, WebActivity::class.java))
+            editor.putString(Constants.FIRST_TIME_APP_START, Constants.FIRST_TIME_APP_START)
+            editor.apply()
+            finish()
+        }
+
+
 
         binding.apply {
+
+
             textAppMode.setOnClickListener {
                 navigateAppMolde = true
                 if (checkMultiplePermission()) {
@@ -82,17 +120,28 @@ class TvActivityOrAppMode : AppCompatActivity() {
 
 
             }
+
+            textTvMode.setOnClickListener {
+                navigateTVMode = true
+                if (checkMultiplePermission()) {
+                    doOperation()
+                }
+
+            }
+
         }
+
+
     }
 
 
     private fun doOperation() {
         if (Build.VERSION.SDK_INT >= 30) {
-            if (hasPermission == false) {
+            if (hasPermission == false){
                 showPop_For_Grant_Permsiion()
             }
-        } else {
-            isReadToMove()
+        }else{
+            isReadToMoveForKower()
         }
 
         val getpermit = getPermissionStatus(this@TvActivityOrAppMode)
@@ -101,6 +150,53 @@ class TvActivityOrAppMode : AppCompatActivity() {
         }
 
     }
+
+    private fun isReadToMoveForKower() {
+        binding.apply {
+            val sharedBiometric: SharedPreferences =
+                applicationContext.getSharedPreferences(Constants.SHARED_BIOMETRIC, MODE_PRIVATE)
+            val editor = sharedBiometric.edit()
+
+            if (navigateAppMolde == true ) {
+
+                val directoryPath = Environment.getExternalStorageDirectory().absolutePath + "/Download/Syn2AppLive/"
+                val file = File(directoryPath)
+                delete(file)
+
+                startActivity(Intent(applicationContext, RequiredBioActivity::class.java))
+                editor.putString(Constants.MY_TV_OR_APP_MODE, Constants.App_Mode)
+                editor.putString(Constants.FIRST_TIME_APP_START, Constants.FIRST_TIME_APP_START)
+                editor.apply()
+                finish()
+
+                showToastMessage("Please wait")
+
+
+            }
+
+
+            if (navigateTVMode == true ) {
+
+                val directoryPath = Environment.getExternalStorageDirectory().absolutePath + "/Download/Syn2AppLive/"
+                val file = File(directoryPath)
+                delete(file)
+
+                //  startActivity(Intent(applicationContext, ReSyncActivity::class.java))
+                startActivity(Intent(applicationContext, RequiredBioActivity::class.java))
+                editor.putString(Constants.MY_TV_OR_APP_MODE, Constants.TV_Mode)
+                editor.putString(Constants.CALL_RE_SYNC_MANGER, Constants.CALL_RE_SYNC_MANGER)
+                editor.putString(Constants.FIRST_TIME_APP_START, Constants.FIRST_TIME_APP_START)
+                editor.apply()
+                finish()
+
+                showToastMessage("Please wait")
+
+            }
+
+        }
+    }
+
+
 
 
     private fun checkMultiplePermission(): Boolean {
@@ -228,7 +324,6 @@ class TvActivityOrAppMode : AppCompatActivity() {
         }
 
 
-
     }
 
     private fun isReadToMove() {
@@ -237,10 +332,9 @@ class TvActivityOrAppMode : AppCompatActivity() {
                 applicationContext.getSharedPreferences(Constants.SHARED_BIOMETRIC, MODE_PRIVATE)
             val editor = sharedBiometric.edit()
 
-            if (navigateAppMolde == true && isReady == true) {
+            if (navigateAppMolde == true &&  isReady == true) {
 
-                val directoryPath =
-                    Environment.getExternalStorageDirectory().absolutePath + "/Download/Syn2AppLive/"
+                val directoryPath = Environment.getExternalStorageDirectory().absolutePath + "/Download/Syn2AppLive/"
                 val file = File(directoryPath)
                 delete(file)
 
@@ -256,9 +350,26 @@ class TvActivityOrAppMode : AppCompatActivity() {
             }
 
 
+            if (navigateTVMode == true &&  isReady == true) {
+
+                val directoryPath = Environment.getExternalStorageDirectory().absolutePath + "/Download/Syn2AppLive/"
+                val file = File(directoryPath)
+                delete(file)
+
+                //  startActivity(Intent(applicationContext, ReSyncActivity::class.java))
+                startActivity(Intent(applicationContext, RequiredBioActivity::class.java))
+                editor.putString(Constants.MY_TV_OR_APP_MODE, Constants.TV_Mode)
+                editor.putString(Constants.CALL_RE_SYNC_MANGER, Constants.CALL_RE_SYNC_MANGER)
+                editor.putString(Constants.FIRST_TIME_APP_START, Constants.FIRST_TIME_APP_START)
+                editor.apply()
+                finish()
+
+                showToastMessage("Please wait")
+
+            }
+
         }
     }
-
 
 
     @SuppressLint("MissingInflatedId")
@@ -300,6 +411,7 @@ class TvActivityOrAppMode : AppCompatActivity() {
         }
         return false
     }
+
 
 
 }

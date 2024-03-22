@@ -663,7 +663,7 @@ class DownlodPagger : AppCompatActivity() {
 
             val url = "https://cp.cloudappserver.co.uk/app_base/public/$getFolderClo/$getFolderSubpath/App/index.html"
 
-            editor.putString(Constants.imgAllowLunchFromOnline, "imgAllowLunchFromOnline")
+          //  editor.putString(Constants.imgAllowLunchFromOnline, "imgAllowLunchFromOnline")
             editor.putString(Constants.getFolderClo, getFolderClo)
             editor.putString(Constants.getFolderSubpath, getFolderSubpath)
             editor.putString(Constants.syncUrl, url)
