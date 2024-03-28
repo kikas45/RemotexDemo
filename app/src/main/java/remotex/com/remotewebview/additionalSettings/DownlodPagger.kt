@@ -32,12 +32,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import remotex.com.remotewebview.MyApplication
 import remotex.com.remotewebview.WebActivity
-import remotex.com.remotewebview.additionalSettings.myService.NotificationService
+import remotex.com.remotewebview.additionalSettings.myService.SyncInterval
 import remotex.com.remotewebview.additionalSettings.myService.OnChnageService
 import remotex.com.remotewebview.additionalSettings.utils.Constants
 import remotex.com.remotewebview.additionalSettings.utils.ServiceUtils
 import remotex.com.remotewebview.databinding.ActivityDownlodPaggerBinding
-import remotex.com.remotewebview.databinding.CustomSetUpTimerOptionLayoutBinding
 import remotex.com.remotewebview.databinding.LaucnOnlineDonloadPaggerBinding
 import remotex.com.remotewebview.databinding.ProgressDialogLayoutBinding
 import java.io.File
@@ -609,10 +608,10 @@ class DownlodPagger : AppCompatActivity() {
            if (get_intervals != null && get_intervals == Constants.imagSwtichEnableSyncOnFilecahnge) {
                stopService(Intent(applicationContext, OnChnageService::class.java))
                if (!ServiceUtils.foregroundServiceRunning(applicationContext)) {
-                   startService(Intent(applicationContext, NotificationService::class.java))
+                   startService(Intent(applicationContext, SyncInterval::class.java))
                }
            } else {
-               stopService(Intent(applicationContext, NotificationService::class.java))
+               stopService(Intent(applicationContext, SyncInterval::class.java))
                if (!ServiceUtils.foregroundServiceRunningOnChange(applicationContext)) {
                    startService(Intent(applicationContext, OnChnageService::class.java))
                }
@@ -646,10 +645,10 @@ class DownlodPagger : AppCompatActivity() {
             if (get_intervals != null && get_intervals == Constants.imagSwtichEnableSyncOnFilecahnge) {
                 stopService(Intent(applicationContext, OnChnageService::class.java))
                 if (!ServiceUtils.foregroundServiceRunning(applicationContext)) {
-                    startService(Intent(applicationContext, NotificationService::class.java))
+                    startService(Intent(applicationContext, SyncInterval::class.java))
                 }
             } else {
-                stopService(Intent(applicationContext, NotificationService::class.java))
+                stopService(Intent(applicationContext, SyncInterval::class.java))
                 if (!ServiceUtils.foregroundServiceRunningOnChange(applicationContext)) {
                     startService(Intent(applicationContext, OnChnageService::class.java))
                 }

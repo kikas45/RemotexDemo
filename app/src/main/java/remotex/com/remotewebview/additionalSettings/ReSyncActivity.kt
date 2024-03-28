@@ -49,8 +49,8 @@ import remotex.com.remotewebview.WebActivity
 import remotex.com.remotewebview.additionalSettings.ApiUrls.ApiUrlViewModel
 import remotex.com.remotewebview.additionalSettings.ApiUrls.DomainUrl
 import remotex.com.remotewebview.additionalSettings.ApiUrls.SavedApiAdapter
-import remotex.com.remotewebview.additionalSettings.myService.NotificationService
 import remotex.com.remotewebview.additionalSettings.myService.OnChnageService
+import remotex.com.remotewebview.additionalSettings.myService.SyncInterval
 import remotex.com.remotewebview.additionalSettings.savedDownloadHistory.SavedHistoryListAdapter
 import remotex.com.remotewebview.additionalSettings.savedDownloadHistory.User
 import remotex.com.remotewebview.additionalSettings.savedDownloadHistory.UserViewModel
@@ -309,17 +309,17 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun check_for_valid_confileUrl(){
 
-      //  showCustomProgressDialog("Testing connection")
+        //  showCustomProgressDialog("Testing connection")
 
-      //  val ServerUrl = "https://firebasestorage.googleapis.com/v0/b/syn2appkiller.appspot.com/o/myApp.zip?alt=media&token=8b303be6-4490-4fe0-ae6f-47a1b5278926"
+        //  val ServerUrl = "https://firebasestorage.googleapis.com/v0/b/syn2appkiller.appspot.com/o/myApp.zip?alt=media&token=8b303be6-4490-4fe0-ae6f-47a1b5278926"
         val ServerUrl = "https://cloudappserver.co.uk/cp/app_base/public/CLO/DE_MO_2021001/Zip/Config.zip"
 
 
 
         val sharedLicenseKeys = getSharedPreferences(Constants.SIMPLE_SAVED_PASSWORD, MODE_PRIVATE)
 
-       val  get_UserID = sharedLicenseKeys.getString(Constants.get_UserID, "")!!
-       val  get_LicenseKey = sharedLicenseKeys.getString(Constants.get_LicenseKey, "")!!
+        val  get_UserID = sharedLicenseKeys.getString(Constants.get_UserID, "")!!
+        val  get_LicenseKey = sharedLicenseKeys.getString(Constants.get_LicenseKey, "")!!
 
 
         if (isNetworkAvailable()){
@@ -475,9 +475,9 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
             try {
                 while (!isDownloadComplete) {
 
-                   runOnUiThread {
-                       getDownloadStatus(bindingCM.progressBarPref, bindingCM.teextDisplaydownload, get_UserID, get_LicenseKey, ServerUrl, Constants.Config )
-                   }
+                    runOnUiThread {
+                        getDownloadStatus(bindingCM.progressBarPref, bindingCM.teextDisplaydownload, get_UserID, get_LicenseKey, ServerUrl, Constants.Config )
+                    }
 
 
 
@@ -962,7 +962,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                                 User(
                                     CLO = getFolderClo,
                                     DEMO = getFolderSubpath,
-                                    EditUrl = ""
+                                    EditUrl = "", EditUrlIndex = ""
                                 )
                             mUserViewModel.addUser(user)
                             customProgressDialog.dismiss()
@@ -976,7 +976,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                             customProgressDialog.dismiss()
                         }
                     } finally {
-                     //   customProgressDialog.dismiss()
+                        //   customProgressDialog.dismiss()
 
                     }
                 }
@@ -1001,7 +1001,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                                 User(
                                     CLO = getFolderClo,
                                     DEMO = getFolderSubpath,
-                                    EditUrl = ""
+                                    EditUrl = "" , EditUrlIndex = ""
                                 )
                             mUserViewModel.addUser(user)
                             customProgressDialog.dismiss()
@@ -1015,7 +1015,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                             customProgressDialog.dismiss()
                         }
                     } finally {
-                      //  customProgressDialog.dismiss()
+                        //  customProgressDialog.dismiss()
                     }
                 }
 
@@ -1045,7 +1045,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                             "Successful"
                         )
 
-                        val user = User(CLO = "", DEMO = "", EditUrl = baseUrl33)
+                        val user = User(CLO = "", DEMO = "", EditUrl = baseUrl33, EditUrlIndex = "")
                         mUserViewModel.addUser(user)
                         customProgressDialog.dismiss()
 
@@ -1055,7 +1055,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                         customProgressDialog.dismiss()
                     }
                 } finally {
-                  //  customProgressDialog.dismiss()
+                    //  customProgressDialog.dismiss()
                 }
             }
 
@@ -1108,7 +1108,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
 
 
             textView12.setOnClickListener {
-              //  setUpCustomeTimmer()
+                //  setUpCustomeTimmer()
                 showSyncDialog()
             }
 
@@ -1251,7 +1251,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
             } else {
                 textSyncOnFileChangeIntervals.setText("Download on change")
                 applicationContext.stopService(
-                    Intent(applicationContext, NotificationService::class.java)
+                    Intent(applicationContext, SyncInterval::class.java)
 
                 )
 
@@ -1288,7 +1288,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                             startService(
                                 Intent(
                                     applicationContext,
-                                    NotificationService::class.java
+                                    SyncInterval::class.java
                                 )
                             )
 
@@ -1320,7 +1320,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                     if (!fil_CLO.isEmpty() && !fil_DEMO.isEmpty()) {
 
                         if (!ServiceUtils.foregroundServiceRunningOnChange(applicationContext)) {
-                            stopService(Intent(applicationContext, NotificationService::class.java))
+                            stopService(Intent(applicationContext, SyncInterval::class.java))
                             startService(Intent(applicationContext, OnChnageService::class.java))
 
                             val editorM = myDownloadClass.edit()
@@ -2252,7 +2252,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                                 User(
                                     CLO = getFolderClo,
                                     DEMO = getFolderSubpath,
-                                    EditUrl = ""
+                                    EditUrl = "", EditUrlIndex = ""
                                 )
                             mUserViewModel.addUser(user)
 
@@ -2295,7 +2295,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                                 User(
                                     CLO = getFolderClo,
                                     DEMO = getFolderSubpath,
-                                    EditUrl = ""
+                                    EditUrl = "", EditUrlIndex = ""
                                 )
                             mUserViewModel.addUser(user)
 
@@ -2336,7 +2336,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                         if (result) {
                             startDownloadSingles(baseUrl, "Zip", "App.zip")
 
-                            val user = User(CLO = "", DEMO = "", EditUrl = baseUrl)
+                            val user = User(CLO = "", DEMO = "", EditUrl = baseUrl, EditUrlIndex = "")
                             mUserViewModel.addUser(user)
 
                         } else {
@@ -2360,7 +2360,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                         val result = checkUrlExistence(baseUrl)
                         if (result) {
                             startDownloadSingles(baseUrl, "Api", "App.zip")
-                            val user = User(CLO = "", DEMO = "", EditUrl = baseUrl)
+                            val user = User(CLO = "", DEMO = "", EditUrl = baseUrl,  EditUrlIndex = "")
                             mUserViewModel.addUser(user)
                         } else {
 
@@ -2420,7 +2420,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                                 val user = User(
                                     CLO = getFolderClo,
                                     DEMO = getFolderSubpath,
-                                    EditUrl = ""
+                                    EditUrl = "",  EditUrlIndex = ""
                                 )
                                 mUserViewModel.addUser(user)
                                 customProgressDialog.dismiss()
@@ -2435,7 +2435,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                                 customProgressDialog.dismiss()
                             }
                         } finally {
-                           // customProgressDialog.dismiss()
+                            // customProgressDialog.dismiss()
                         }
                     }
 
@@ -2459,7 +2459,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                                 val user = User(
                                     CLO = getFolderClo,
                                     DEMO = getFolderSubpath,
-                                    EditUrl = ""
+                                    EditUrl = "", EditUrlIndex = ""
                                 )
                                 mUserViewModel.addUser(user)
                                 customProgressDialog.dismiss()
@@ -2473,7 +2473,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                                 customProgressDialog.dismiss()
                             }
                         } finally {
-                         //   customProgressDialog.dismiss()
+                            //   customProgressDialog.dismiss()
                         }
                     }
 
@@ -2531,7 +2531,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
 
                                 // save also to room data base
                                 val user =
-                                    User(CLO = getFolderClo, DEMO = getFolderSubpath, EditUrl = "")
+                                    User(CLO = getFolderClo, DEMO = getFolderSubpath, EditUrl = "", EditUrlIndex = "")
                                 mUserViewModel.addUser(user)
 
                             } else {
@@ -2570,7 +2570,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
 
                                 // save also to room data base
                                 val user =
-                                    User(CLO = getFolderClo, DEMO = getFolderSubpath, EditUrl = "")
+                                    User(CLO = getFolderClo, DEMO = getFolderSubpath, EditUrl = "", EditUrlIndex = "")
                                 mUserViewModel.addUser(user)
 
                             } else {
@@ -2583,7 +2583,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                             }
                         } finally {
 
-                              //  customProgressDialog.dismiss()
+                            //  customProgressDialog.dismiss()
 
                         }
                     }
@@ -2665,45 +2665,45 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                 customProgressDialog.dismiss()
                 if (!binding.imagSwtichEnableSyncFromAPI.isChecked) {
 
-                   // startActivity(Intent(applicationContext, DonwloadPageActivity::class.java))
+                    // startActivity(Intent(applicationContext, DonwloadPageActivity::class.java))
                     startActivity(Intent(applicationContext, DisplayCSvFiles::class.java))
 
                 }else{
 
-                val threeFolderPath = "/$getFolderClo/$getFolderSubpath/$Zip"
+                    val threeFolderPath = "/$getFolderClo/$getFolderSubpath/$Zip"
 
-                val Extracted = "App"
-
-
-
-                download(baseUrl, getFolderClo, getFolderSubpath, Zip, fileName, Extracted, threeFolderPath)
-
-                /// similar but used on under second cancel downoad in danwload pager
-                val editor = myDownloadClass.edit()
-                editor.putString(Constants.getFolderClo, getFolderClo)
-                editor.putString(Constants.getFolderSubpath, getFolderSubpath)
-                editor.putString("Zip", Zip)
-                editor.putString("fileName", fileName)
-                editor.putString(Constants.Extracted, Extracted)
-                editor.putString("baseUrl", baseUrl)
+                    val Extracted = "App"
 
 
-                val url =
-                    "https://cp.cloudappserver.co.uk/app_base/public/$getFolderClo/$getFolderSubpath/App/index.html"
+
+                    download(baseUrl, getFolderClo, getFolderSubpath, Zip, fileName, Extracted, threeFolderPath)
+
+                    /// similar but used on under second cancel downoad in danwload pager
+                    val editor = myDownloadClass.edit()
+                    editor.putString(Constants.getFolderClo, getFolderClo)
+                    editor.putString(Constants.getFolderSubpath, getFolderSubpath)
+                    editor.putString("Zip", Zip)
+                    editor.putString("fileName", fileName)
+                    editor.putString(Constants.Extracted, Extracted)
+                    editor.putString("baseUrl", baseUrl)
 
 
-                if (binding.imagSwtichEnableLaucngOnline.isChecked) {
-                    editor.putString(Constants.Tapped_OnlineORoffline, Constants.tapped_launchOnline)
-                    editor.putString(Constants.syncUrl, url)
+                    val url =
+                        "https://cp.cloudappserver.co.uk/app_base/public/$getFolderClo/$getFolderSubpath/App/index.html"
 
-                } else {
-                    editor.putString(Constants.Tapped_OnlineORoffline, Constants.tapped_launchOffline)
 
+                    if (binding.imagSwtichEnableLaucngOnline.isChecked) {
+                        editor.putString(Constants.Tapped_OnlineORoffline, Constants.tapped_launchOnline)
+                        editor.putString(Constants.syncUrl, url)
+
+                    } else {
+                        editor.putString(Constants.Tapped_OnlineORoffline, Constants.tapped_launchOffline)
+
+                    }
+
+                    editor.apply()
                 }
-
-                editor.apply()
             }
-        }
         }
 
     }
@@ -2721,7 +2721,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
                 customProgressDialog.dismiss()
                 if (!binding.imagSwtichEnableSyncFromAPI.isChecked) {
 
-                  //  startActivity(Intent(applicationContext, DonwloadPageActivity::class.java))
+                    //  startActivity(Intent(applicationContext, DonwloadPageActivity::class.java))
                     startActivity(Intent(applicationContext, DisplayCSvFiles::class.java))
 
                 } else {
@@ -2867,7 +2867,7 @@ class ReSyncActivity : AppCompatActivity(), SavedHistoryListAdapter.OnItemClickL
             editor222.apply()
 
 
-            stopService(Intent(this@ReSyncActivity, NotificationService::class.java))
+            stopService(Intent(this@ReSyncActivity, SyncInterval::class.java))
             stopService(Intent(this@ReSyncActivity, OnChnageService::class.java))
 
 

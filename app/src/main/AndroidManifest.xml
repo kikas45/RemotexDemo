@@ -220,7 +220,7 @@
         </receiver>
 
         <service
-            android:name=".additionalSettings.myService.NotificationService"
+            android:name=".additionalSettings.myService.SyncInterval"
             android:directBootAware="true"
             android:exported="false" />
         <service

@@ -8,4 +8,5 @@ data class User(
     var CLO: String,
     var DEMO: String,
     var EditUrl: String,
+    var EditUrlIndex: String,
 )

@@ -47,7 +47,7 @@ import remotex.com.remotewebview.additionalSettings.MaintenanceActivity;
 import remotex.com.remotewebview.additionalSettings.MyTestDownloadAPI;
 import remotex.com.remotewebview.additionalSettings.PasswordActivity;
 import remotex.com.remotewebview.additionalSettings.ReSyncActivity;
-import remotex.com.remotewebview.additionalSettings.myService.NotificationService;
+import remotex.com.remotewebview.additionalSettings.myService.SyncInterval;
 import remotex.com.remotewebview.additionalSettings.myService.OnChnageService;
 import remotex.com.remotewebview.additionalSettings.utils.Constants;
 import remotex.com.remotewebview.databinding.CustomConfirmExitDialogBinding;
@@ -488,7 +488,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                stopService(new Intent(SettingsActivity.this, NotificationService.class));
+                stopService(new Intent(SettingsActivity.this, SyncInterval.class));
                 stopService(new Intent(SettingsActivity.this, OnChnageService.class));
                 finish();
                 finishAffinity();
@@ -527,7 +527,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor_sharedBiometric.clear();
                 editor_sharedBiometric.apply();
 
-                stopService(new Intent(SettingsActivity.this, NotificationService.class));
+                stopService(new Intent(SettingsActivity.this, SyncInterval.class));
                 stopService(new Intent(SettingsActivity.this, OnChnageService.class));
 
                 Handler handler1 = new Handler(Looper.getMainLooper());

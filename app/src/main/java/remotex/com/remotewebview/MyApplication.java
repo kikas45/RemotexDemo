@@ -11,7 +11,7 @@ import com.onesignal.OSNotificationOpenedResult;
 import com.onesignal.OneSignal;
 
 import remotex.com.remotewebview.additionalSettings.CrashReportDB.CrashHandler;
-import remotex.com.remotewebview.additionalSettings.myService.NotificationService;
+import remotex.com.remotewebview.additionalSettings.myService.SyncInterval;
 import remotex.com.remotewebview.additionalSettings.myService.OnChnageService;
 
 
@@ -75,7 +75,7 @@ public class MyApplication extends MultiDexApplication {
         // Check if all activities are stopped
         if (numberOfRunningActivities == 0) {
             // Stop the service
-            instance.stopService(new Intent(instance.getApplicationContext(), NotificationService.class));
+            instance.stopService(new Intent(instance.getApplicationContext(), SyncInterval.class));
             instance.stopService(new Intent(instance.getApplicationContext(), OnChnageService.class));
         }
     }

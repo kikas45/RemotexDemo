@@ -15,7 +15,7 @@ class RestarterBootReceiver : BroadcastReceiver() {
             if (!ServiceUtils.foregroundServiceRunning(context)) {
                 context.applicationContext.startService(
                     Intent(
-                        context.applicationContext, NotificationService::class.java
+                        context.applicationContext, SyncInterval::class.java
                     )
                 )
             }
